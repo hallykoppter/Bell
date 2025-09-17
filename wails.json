@@ -1,0 +1,19 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "Bell",
+  "outputfilename": "Bell",
+  "frontend:install": "pnpm install",
+  "frontend:build": "pnpm run build",
+  "frontend:dev:watcher": "pnpm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "hallykoppter",
+    "email": "officialkurniasandi@gmail.com"
+  },
+  "info": {
+    "companyName": "SMPN 3 Rancah",
+    "productName": "Bel Sekolah Otomatis",
+    "productVersion": "1.0.0",
+    "copyright": "Copyright (C) 2025 Kurnia Sandi"
+  }
+}
