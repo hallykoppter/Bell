@@ -1,10 +1,12 @@
 package service
 
-import "Bell/api/models"
+import (
+	"Bell/api/models"
+	"Bell/api/repository"
+)
 
-func (a *App) GetSetting() ([]models.Setting, error) {
-	var setting []models.Setting
-	err := a.Db.First(&setting).Error
+func (a *App) GetSetting() (*models.Setting, error) {
+	setting, err := repository.QuerySetting(a.Db)
 	if err != nil {
 		return nil, err
 	}

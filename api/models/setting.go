@@ -10,6 +10,7 @@ type Setting struct {
 	Npsn        string `gorm:"type:varchar(100)"`
 	LogoSekolah string `gorm:"type:varchar(100)"`
 	Password	string `gorm:"type:varchar(100)"`
+	DayActive 	int8 
 	Active      int8
 }
 

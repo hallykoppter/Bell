@@ -12,8 +12,8 @@ func QueryAllDay(db *gorm.DB) ([]models.Day, error) {
 	return days, err
 }
 
-func QueryDay(db *gorm.DB, ID int8) ([]models.Day, error) {
-	var day []models.Day
+func QueryDay(db *gorm.DB, ID int8) (*models.Day, error) {
+	var day *models.Day
 	err := db.Find(&day, ID).Error
 	return day, err
 }

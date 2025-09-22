@@ -17,13 +17,13 @@ func FirstSeedRpository(db *gorm.DB) error {
 	return nil
 }
 
-func QuerySetting(db *gorm.DB) ([]models.Setting, error) {
-	var a []models.Setting
+func QuerySetting(db *gorm.DB) (*models.Setting, error) {
+	var a *models.Setting
 	err := db.First(&a).Error
 	return a, err
 }
 
-func CheckPasswordHash(password, hash string) bool {
+func CheckPasswordHash(hash, password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
 }

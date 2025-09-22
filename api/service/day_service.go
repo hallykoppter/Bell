@@ -10,7 +10,7 @@ func (a *App) GetDays() ([]models.Day, error) {
 	return days, err
 }
 
-func (a *App) GetDayById(ID int8) ([]models.Day, error) {
+func (a *App) GetDayById(ID int8) (*models.Day, error) {
 	day, err := repository.QueryDay(a.Db, ID)
 	return day, err
 }

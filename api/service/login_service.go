@@ -1,10 +1,11 @@
 package service
 
 import (
-	"golang.org/x/crypto/bcrypt"
+	"Bell/api/repository"
 )
 
-func (a *App) Login(hash, password string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
+func (a *App) Login(pass string) bool {
+	setting, _ := repository.QuerySetting(a.Db)
+	res := repository.CheckPasswordHash(setting.Password, pass)
+	return res
 }
