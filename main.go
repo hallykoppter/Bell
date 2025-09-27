@@ -9,7 +9,8 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 )
 
-//go:embed all:frontend/dist all:frontend/out all:frontend/out/_next/static/*/* all:frontend/out/_next/static/*/*/*
+//go:embed all:frontend/dist all:frontend/out
+// all:frontend/out/_next/static/*/* all:frontend/out/_next/static/*/*/*
 var assets embed.FS
 
 func main() {

@@ -1,14 +1,12 @@
 package models
 
 import (
-	"time"
-
 	"gorm.io/gorm"
 )
 
 type Schedule struct {
 	gorm.Model
-	Waktu time.Time
+	Waktu string
 	Audio string
 	DayID uint
 }

@@ -4,6 +4,7 @@ import (
 	"Bell/api/database"
 	"context"
 	"log"
+	"time"
 
 	"gorm.io/gorm"
 )
@@ -29,6 +30,12 @@ func (a *App) Startup(ctx context.Context) {
 	a.Db = database.InitializeDatabase()
 	err := a.Migrate()
 	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	weekday := time.Now().Weekday()
+	wErr := a.UpdateDayActive(int8(weekday))
+	if wErr != nil {
 		log.Fatal(err.Error())
 	}
 }

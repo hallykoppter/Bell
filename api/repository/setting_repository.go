@@ -27,3 +27,7 @@ func CheckPasswordHash(hash, password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
 }
+
+func QueryUpdateSetting(db *gorm.DB, setting *models.Setting) error {
+	return db.Model(models.Setting{}).Where("id = ?", 1).Updates(setting).Error
+}
