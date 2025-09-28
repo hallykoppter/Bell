@@ -10,7 +10,7 @@ import (
 
 func (a *App) Migrate() error {
 	// User Migration
-	err := a.Db.AutoMigrate(&models.Day{}, &models.Setting{}, &models.Schedule{})
+	err := a.Db.AutoMigrate(&models.Day{}, &models.Setting{}, &models.Schedule{}, &models.Bell{})
 
 	// User Seed
 	if err == nil && a.Db.Migrator().HasTable(&models.Day{}) {

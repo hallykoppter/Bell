@@ -15,8 +15,21 @@ func QuerySchedule(db *gorm.DB, DayID int8) ([]models.Schedule, error) {
 	return schedule, nil
 }
 
-func QueryInsertSchedule(db *gorm.DB, schedule *models.Schedule) error {
-	return db.Create(&schedule).Error
+func QueryInsertSchedule(db *gorm.DB, schedule *models.Schedule) int {
+
+	existingSchedule := models.Schedule{}
+
+	searchCondition := models.Schedule{
+		Waktu: schedule.Waktu,
+		DayID: schedule.DayID,
+	}
+
+	db.Where(searchCondition).FirstOrInit(&existingSchedule)
+	existingSchedule.Audio = schedule.Audio
+	res := db.Save(&existingSchedule)
+
+	return int(res.RowsAffected)
+
 }
 
 func QueryScheduleByDay(db *gorm.DB, ID int) ([]models.Schedule, error) {
@@ -30,6 +43,7 @@ func QueryScheduleByDay(db *gorm.DB, ID int) ([]models.Schedule, error) {
 
 func QueryScheduleDelete(db *gorm.DB, ID int) error {
 	var Schedule *models.Schedule
-	err := db.Delete(&Schedule, ID).Error
+	err := db.Unscoped().Delete(&Schedule, ID).Error
 	return err
 }
+

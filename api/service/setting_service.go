@@ -49,3 +49,8 @@ func (a *App) UpdatePassword(Pass string) error {
 	err := repository.QueryUpdateSetting(a.Db, setting)
 	return err
 }
+
+func (a *App) TruncateTabelJadwaldanBel() error {
+	err := repository.QueryTruncateJadwaldanBel(a.Db)
+	return err
+}

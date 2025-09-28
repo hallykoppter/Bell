@@ -5,14 +5,14 @@ import (
 	"Bell/api/repository"
 )
 
-func (a *App) InsertSchedule(Waktu, Audio string, DayID int) error {
+func (a *App) InsertSchedule(Waktu, Audio string, DayID int) int {
 	schedule := models.Schedule{
 		Waktu: Waktu,
 		Audio: Audio,
 		DayID: uint(DayID),
 	}
-	err := repository.QueryInsertSchedule(a.Db, &schedule)
-	return err
+	res := repository.QueryInsertSchedule(a.Db, &schedule)
+	return res
 }
 
 func (a *App) GetScheduleByDay(ID int) ([]models.Schedule, error) {
