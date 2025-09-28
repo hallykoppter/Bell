@@ -25,7 +25,9 @@ func QueryInsertSchedule(db *gorm.DB, schedule *models.Schedule) int {
 	}
 
 	db.Where(searchCondition).FirstOrInit(&existingSchedule)
-	existingSchedule.Audio = schedule.Audio
+	
+	existingSchedule.BellID = schedule.BellID
+
 	res := db.Save(&existingSchedule)
 
 	return int(res.RowsAffected)
@@ -34,7 +36,7 @@ func QueryInsertSchedule(db *gorm.DB, schedule *models.Schedule) int {
 
 func QueryScheduleByDay(db *gorm.DB, ID int) ([]models.Schedule, error) {
 	var Schedule []models.Schedule
-	err := db.Where("day_id = ?", ID).Find(&Schedule).Error
+	err := db.Where("day_id = ?", ID).Preload("Bell").Find(&Schedule).Error
 	if err != nil {
 		return nil, err
 	}

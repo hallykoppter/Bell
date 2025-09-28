@@ -19,7 +19,7 @@ func QueryDay(db *gorm.DB, ID int8) (*models.Day, error) {
 }
 
 func SeedDay(db *gorm.DB) error {
-	days := []models.Day{{Day: "Senin"}, {Day: "Selasa"}, {Day: "Rabu"}, {Day: "Kamis"}, {Day: "Jumat"}, {Day: "Sabtu"}}
+	days := []models.Day{{Day: "Senin"}, {Day: "Selasa"}, {Day: "Rabu"}, {Day: "Kamis"}, {Day: "Jumat"}, {Day: "Sabtu"}, {Day: "Minggu"}}
 	err := db.Create(&days).Error
 	if err != nil {
 		return err

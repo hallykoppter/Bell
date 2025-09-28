@@ -1,6 +1,7 @@
 package service
 
 import (
+	"Bell/api/audio"
 	"Bell/api/database"
 	"context"
 	"log"
@@ -18,6 +19,7 @@ type App struct {
 
 // NewApp creates a new App application struct
 func NewApp(name string) *App {
+	audio.InitSpeaker()
 	return &App{
 		Name: name,
 	}
@@ -32,12 +34,16 @@ func (a *App) Startup(ctx context.Context) {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-
 	weekday := time.Now().Weekday()
+	if weekday == 0 {
+		weekday = 7
+	}
 	wErr := a.UpdateDayActive(int8(weekday))
 	if wErr != nil {
-		log.Fatal(err.Error())
+		log.Fatal(wErr.Error())
 	}
+
+	go a.RunScheduler()
 }
 
 

@@ -6,7 +6,8 @@ import (
 
 type Schedule struct {
 	gorm.Model
-	Waktu string
-	Audio string
-	DayID uint
+	Waktu 	string
+	BellID 	uint
+	DayID 	uint
+	Bell 	Bell
 }

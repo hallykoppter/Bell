@@ -32,6 +32,10 @@ func QueryUpdateSetting(db *gorm.DB, setting *models.Setting) error {
 	return db.Model(models.Setting{}).Where("id = ?", 1).Updates(setting).Error
 }
 
+func QueryUpdateDayActive(db *gorm.DB, DayActive int8) error {
+	return db.Model(models.Setting{}).Where("id = ?", 1).Select("DayActive").Updates(models.Setting{DayActive: DayActive}).Error
+}
+
 func QueryTruncateJadwaldanBel(db *gorm.DB) error {
 	err := db.Exec("DELETE FROM 'bells'").Exec("DELETE FROM 'schedules'").Exec("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'bells'").Exec("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'schedules'").Exec("VACUUM").Error
 	return err

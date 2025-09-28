@@ -31,3 +31,9 @@ func QueryDeleteBellByID(db *gorm.DB, ID int) error {
 	err := db.Unscoped().Where("id = ?", ID).Delete(&Bell).Error
 	return err
 } 
+
+func QueryGetBellByID(db *gorm.DB, ID int) (*models.Bell, error) {
+	var bell *models.Bell
+	err := db.Find(&bell, ID).Error
+	return bell, err
+}
